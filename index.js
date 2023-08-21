@@ -5,7 +5,12 @@ const express = require("express");
     const userRouter = require("./routes/UserRouter");
 const postRoute = require("./routes/PostRouter");
    app.use(express.json())
-  app.use(cors())
+   const corsOptions = {
+    origin: 'https://yourfrontenddomain.com',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
+  
+  app.use(cors(corsOptions));
 app.get("/",(req,res)=>{
        res.send({"msg":"welcome to the backened"})
 })
