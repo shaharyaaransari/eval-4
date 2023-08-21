@@ -13,7 +13,7 @@ userRouter.post("/register", async (req, res) => {
         const user = await UserModel.findOne({ email })
         if (user) {
             return res.status(400).send({ "msg": "User already exist" })
-        }
+        }else{
         bcrypt.hash(password, 5, async (err, hash) => {
             if (err) {
                 return res.status(400).send({ "msg": err })
@@ -23,6 +23,7 @@ userRouter.post("/register", async (req, res) => {
                  res.status(200).send({ "msg": "User Added Successfully!", user })
             }
         });
+    }
     } catch (error) {
         res.status(400).send({ "err": error.message })
     }
